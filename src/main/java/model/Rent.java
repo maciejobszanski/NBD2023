@@ -37,5 +37,5 @@ public class Rent implements Serializable {
     private LocalTime rentStartTime;
 
     @Column(name = "rent_end_time")
-    private LocalTime reneEndTime;
+    private LocalTime rentEndTime;
 }

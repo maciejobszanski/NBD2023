@@ -10,7 +10,7 @@ import java.util.UUID;
 @Valid
 @Table(name = "Client")
 @Access(AccessType.FIELD)
-public abstract class Client implements Serializable {
+public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long ID;
@@ -24,6 +24,9 @@ public abstract class Client implements Serializable {
     @Column (name = "client_ID", unique = true)
     private final String clientID;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn (name = "type_ID")
+    private ClientType type;
     public Client(String userName, String email) {
         this.userName = userName;
         this.email = email;
@@ -33,6 +36,8 @@ public abstract class Client implements Serializable {
     public Client() {
         this.clientID = UUID.randomUUID().toString();
     }
+
+
 
     public String getUserName() {
         return userName;
