@@ -5,6 +5,16 @@
              version="3.0">
   <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
     <class>model.Client</class>
+    <class>model.Rent</class>
+    <class>model.Vehicle</class>
+    <class>model.ClientType</class>
+    <class>model.NewClient</class>
+    <class>model.RegularClient</class>
+    <class>model.PremiumClient</class>
+    <class>model.Car</class>
+    <class>model.Motorcycle</class>
+    <class>model.Scooter</class>
+    <class>model.Bus</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>CALLBACK</validation-mode>

@@ -62,4 +62,8 @@ public class Client implements Serializable {
     public long getID() {
         return ID;
     }
+
+    public ClientType getType() {
+        return type;
+    }
 }

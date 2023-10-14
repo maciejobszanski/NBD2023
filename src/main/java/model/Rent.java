@@ -4,8 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+
+import static java.lang.Math.ceil;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -38,4 +41,19 @@ public class Rent implements Serializable {
 
     @Column(name = "rent_end_time")
     private LocalTime rentEndTime;
+
+    //czy wypożycza się tylko na pełne dni czy robimy ułamki godzin?
+    public int getRentDays() {
+        Duration duration = Duration.between(this.rentStartTime, this.rentEndTime);
+        return (int)ceil(duration.toDays());
+    }
+
+    public double getRentCost(){
+        return this.vehicle.getPrice() * this.getRentDays();
+    }
+
+    public double getFinalRentCost(){
+        return this.client.getType().applyDiscount(this.getRentCost());
+    }
+
 }
