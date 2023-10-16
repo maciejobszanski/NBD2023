@@ -29,11 +29,7 @@ public class ClientManager implements Serializable {
 
     public void unregisterClient(Client client) {
         if(client != null) {
-            repo.remove(client);
+            client.archive(true);
         }
     }
-
-    /*public List<Client> findAllClients(){
-        //#TODO: pobrać liste klientów
-    }*/
 }

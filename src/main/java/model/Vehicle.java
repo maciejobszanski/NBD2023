@@ -26,6 +26,8 @@ public abstract class Vehicle implements Serializable {
 
     @Column(name = "rented")
     private boolean isRented;
+    @Column(name = "is_archived")
+    private boolean isArchived;
 
     public Vehicle(String plateNumber, double price) {
         this.plateNumber = plateNumber;
@@ -67,5 +69,7 @@ public abstract class Vehicle implements Serializable {
         return ID;
     }
 
-
+    public void archive(boolean archive) {
+        this.isArchived = archive;
+    }
 }

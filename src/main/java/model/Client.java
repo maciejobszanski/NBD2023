@@ -27,10 +27,14 @@ public class Client implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "type_ID")
     private ClientType type;
+
+    @Column(name = "is_archived")
+    private boolean isArchived;
     public Client(String userName, String email) {
         this.userName = userName;
         this.email = email;
         this.clientID = UUID.randomUUID().toString();
+        this.isArchived = false;
     }
 
     public Client() {
@@ -65,5 +69,8 @@ public class Client implements Serializable {
 
     public ClientType getType() {
         return type;
+    }
+    public void archive(boolean archive) {
+        this.isArchived = archive;
     }
 }

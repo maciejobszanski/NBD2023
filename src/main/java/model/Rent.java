@@ -42,7 +42,9 @@ public class Rent implements Serializable {
     @Column(name = "rent_end_time")
     private LocalTime rentEndTime;
 
-    //czy wypożycza się tylko na pełne dni czy robimy ułamki godzin?
+    @Column(name = "is_archived")
+    private boolean isArchived;
+
     public int getRentDays() {
         Duration duration = Duration.between(this.rentStartTime, this.rentEndTime);
         return (int)ceil(duration.toDays());
@@ -56,4 +58,11 @@ public class Rent implements Serializable {
         return this.client.getType().applyDiscount(this.getRentCost());
     }
 
+    public void archive(boolean archive) {
+        this.isArchived = archive;
+    }
+
+    public long getID() {
+        return ID;
+    }
 }
