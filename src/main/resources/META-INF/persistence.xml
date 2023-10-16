@@ -15,6 +15,10 @@
     <class>model.Motorcycle</class>
     <class>model.Scooter</class>
     <class>model.Bus</class>
+    <class>repositories.Repository</class>
+    <class>repositories.ClientRepository</class>
+    <class>repositories.RentRepository</class>
+    <class>repositories.VehicleRepository</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>CALLBACK</validation-mode>

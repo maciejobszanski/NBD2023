@@ -1,29 +1,53 @@
 package repositories;
 
+import jakarta.persistence.*;
 import model.Client;
 
 import java.util.List;
 
 public class ClientRepository implements Repository<Client>{
-    //#TODO: metody były generowane automatycznie, aby się zbudowało; trzeba uzupełnić
 
+
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("POSTGRES_RENT_PU");
     @Override
     public Client get(long id) {
-        return null;
+        try (EntityManager em = emf.createEntityManager()) {
+            return em.find(Client.class, id);
+        }
     }
 
     @Override
     public List<Client> getList() {
-        return null;
+        try (EntityManager em = emf.createEntityManager()) {
+            List<Client> clientsList;
+            em.getTransaction().begin();
+            clientsList = em.createQuery("FROM model.Client").setLockMode(LockModeType.PESSIMISTIC_WRITE).getResultList();
+            em.getTransaction().commit();
+            return clientsList;
+        }
     }
 
     @Override
     public boolean remove(Client obj) {
-        return false;
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.remove(em.merge(obj));
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public Client add(Client obj) {
-        return null;
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.persist(obj);
+            em.getTransaction().commit();
+            return obj;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

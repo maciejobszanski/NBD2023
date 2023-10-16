@@ -10,7 +10,7 @@ public class Main {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
 
-        Client client = new Client("maci", "mail@example.com");
+        Client client = new Client("maci1111", "mail@example.com");
 
         em.getTransaction().begin();
 
