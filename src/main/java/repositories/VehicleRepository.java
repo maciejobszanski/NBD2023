@@ -7,7 +7,7 @@ import java.util.List;
 
 public class VehicleRepository implements Repository<Vehicle> {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("POSTGRES_RENT_PU");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
     @Override
     public Vehicle get(long id) {

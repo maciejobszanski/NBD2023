@@ -8,7 +8,7 @@ public class VehicleManager {
 
     public VehicleManager(VehicleRepository repo) {
         if (repo == null) {
-            throw new IllegalArgumentException("clientRepository cannot be null");
+            throw new IllegalArgumentException("vehicleRepository cannot be null");
         } else {
             this.repo = repo;
         }

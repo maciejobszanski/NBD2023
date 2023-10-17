@@ -30,9 +30,10 @@ public class Client implements Serializable {
 
     @Column(name = "is_archived")
     private boolean isArchived;
-    public Client(String userName, String email) {
+    public Client(String userName, String email, ClientType type) {
         this.userName = userName;
         this.email = email;
+        this.type = type;
         this.clientID = UUID.randomUUID().toString();
         this.isArchived = false;
     }
@@ -69,6 +70,10 @@ public class Client implements Serializable {
 
     public ClientType getType() {
         return type;
+    }
+
+    public void setType(ClientType type) {
+        this.type = type;
     }
     public void archive(boolean archive) {
         this.isArchived = archive;

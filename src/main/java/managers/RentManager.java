@@ -10,7 +10,7 @@ public class RentManager {
 
     public RentManager(RentRepository repo) {
         if (repo == null) {
-            throw new IllegalArgumentException("Rent repositiories cannot be null");
+            throw new IllegalArgumentException("rentRepositiory cannot be null");
         } else {
             this.repo = repo;
         }
@@ -24,6 +24,12 @@ public class RentManager {
         } else {
             newRent.archive(false);
             return newRent;
+        }
+    }
+
+    public void unregisterRent(Rent rent) {
+        if(rent != null) {
+            rent.archive(true);
         }
     }
 

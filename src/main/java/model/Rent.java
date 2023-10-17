@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 import static java.lang.Math.ceil;
 
@@ -23,31 +24,44 @@ public class Rent implements Serializable {
     @Column(name = "rent_ID")
     private String rentID;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn
-    @NotNull
-    private Client client;
+    @Column(name = "rent_start_date")
+    private LocalDate rentStartDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn
-    @NotNull
-    private Vehicle vehicle;
+    @Column(name = "rent_end_date")
+    private LocalDate rentEndDate;
 
-    @Column(name = "date")
-    private LocalDate date;
-
-    @Column(name = "rent_start_time")
-    private LocalTime rentStartTime;
-
-    @Column(name = "rent_end_time")
-    private LocalTime rentEndTime;
+    @Column(name = "total_rent_price")
+    private double totalRentPrice;
 
     @Column(name = "is_archived")
     private boolean isArchived;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn
+    @NotNull
+    private Client client;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn
+    @NotNull
+    private Vehicle vehicle;
+
+    public Rent(Client client, Vehicle vehicle, LocalDate rentStartDate, LocalDate rentEndDate) {
+        this.client = client;
+        this.vehicle = vehicle;
+        this.rentStartDate = rentStartDate;
+        this.rentEndDate = rentEndDate;
+        this.totalRentPrice = getFinalRentCost();
+        this.rentID = java.util.UUID.randomUUID().toString();
+        this.isArchived = false;
+    }
+
+    public Rent() {
+        this.rentID = java.util.UUID.randomUUID().toString();
+    }
+
     public int getRentDays() {
-        Duration duration = Duration.between(this.rentStartTime, this.rentEndTime);
-        return (int)ceil(duration.toDays());
+        return (int) ChronoUnit.DAYS.between(this.rentStartDate, this.rentEndDate);
     }
 
     public double getRentCost(){
@@ -64,5 +78,53 @@ public class Rent implements Serializable {
 
     public long getID() {
         return ID;
+    }
+
+    public String getRentID() {
+        return rentID;
+    }
+
+    public LocalDate getRentStartDate() {
+        return rentStartDate;
+    }
+
+    public LocalDate getRentEndDate() {
+        return rentEndDate;
+    }
+
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setRentID(String rentID) {
+        this.rentID = rentID;
+    }
+
+    public void setRentStartDate(LocalDate rentStartDate) {
+        this.rentStartDate = rentStartDate;
+    }
+
+    public void setRentEndDate(LocalDate rentEndDate) {
+        this.rentEndDate = rentEndDate;
+    }
+
+    public void setArchived(boolean archived) {
+        isArchived = archived;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }

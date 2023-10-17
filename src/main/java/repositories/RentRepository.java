@@ -3,11 +3,12 @@ package repositories;
 import jakarta.persistence.*;
 import model.Rent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RentRepository implements Repository<Rent>{
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("POSTGRES_RENT_PU");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
     @Override
     public Rent get(long id) {
         try (EntityManager em = emf.createEntityManager()) {

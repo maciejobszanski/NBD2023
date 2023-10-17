@@ -8,9 +8,13 @@ import jakarta.persistence.*;
 @Access(AccessType.FIELD)
 public class PremiumClient extends ClientType{
 
+    public PremiumClient() {
+        this.discount = 0.7;
+    }
+
     @Override
     public double applyDiscount(double price) {
-        discount = 0.7 * price;
-        return discount;
+        price *= discount;
+        return price;
     }
 }

@@ -23,9 +23,6 @@ public abstract class Vehicle implements Serializable {
 
     @Column(name = "price")
     private double price;
-
-    @Column(name = "rented")
-    private boolean isRented;
     @Column(name = "is_archived")
     private boolean isArchived;
 
@@ -33,12 +30,10 @@ public abstract class Vehicle implements Serializable {
         this.plateNumber = plateNumber;
         this.price = price;
         this.vehicleID = java.util.UUID.randomUUID().toString();
-        this.isRented = false;
     }
 
     public Vehicle() {
         this.vehicleID = java.util.UUID.randomUUID().toString();
-        this.isRented = false;
     }
 
     public String getPlateNumber() {
@@ -49,20 +44,12 @@ public abstract class Vehicle implements Serializable {
         return price;
     }
 
-    public boolean isRented() {
-        return isRented;
-    }
-
     public void setPlateNumber(String plateNumber) {
         this.plateNumber = plateNumber;
     }
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public void setRented(boolean rented) {
-        this.isRented = rented;
     }
 
     public long getID() {

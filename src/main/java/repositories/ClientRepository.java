@@ -8,7 +8,7 @@ import java.util.List;
 public class ClientRepository implements Repository<Client>{
 
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("POSTGRES_RENT_PU");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
     @Override
     public Client get(long id) {
         try (EntityManager em = emf.createEntityManager()) {
