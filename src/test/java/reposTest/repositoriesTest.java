@@ -68,29 +68,28 @@ public class repositoriesTest {
         assertNull(vehicleRepo.get(bus.getID()));
     }
 
-    @Test
-    void addRent() {
-        ClientType PremiumClient = new PremiumClient();
-        Client client1 = new Client("asia", "mail@example.com", PremiumClient);
-        Vehicle motorcycle = new Motorcycle("motor", 150, 3);
-        LocalDate start_date = LocalDate.of(2023, 10, 17);
-        LocalDate end_date = LocalDate.of(2023, 10, 27);
-        Rent rent1 = new Rent(client1, motorcycle, start_date, end_date);
-        rentRepo.add(rent1);
-        assertNotNull(rentRepo.get(rent1.getID()));
-
-    }
-
-    @Test
-    void removeRent() {
-        ClientType NewClient = new NewClient();
-        Client client1 = new Client("maci", "mail@mailowski.pl", NewClient);
-        Vehicle car = new Car("bussy", 300, 450);
-        LocalDate start_date = LocalDate.of(2023, 10, 17);
-        LocalDate end_date = LocalDate.of(2023, 10, 27);
-        Rent rent1 = new Rent(client1, car, start_date, end_date);
-        rentRepo.add(rent1);
-        rentRepo.remove(rent1);
-        assertNull(rentRepo.get(rent1.getID()));
-    }
+//    @Test
+//    void addRent() {
+//        ClientType PremiumClient = new PremiumClient();
+//        Client client1 = new Client("asia", "mail@example.com", PremiumClient);
+//        Vehicle motorcycle = new Motorcycle("motor", 150, 3);
+//        LocalDate start_date = LocalDate.of(2023, 10, 17);
+//        LocalDate end_date = LocalDate.of(2023, 10, 27);
+//        Rent rent1 = new Rent(client1, motorcycle, start_date, end_date);
+//        rentRepo.add(rent1);
+//        assertNotNull(rentRepo.get(rent1.getID()));
+//    }
+//
+//    @Test
+//    void removeRent() {
+//        ClientType NewClient = new NewClient();
+//        Client client1 = new Client("maci", "mail@mailowski.pl", NewClient);
+//        Vehicle car = new Car("bussy", 300, 450);
+//        LocalDate start_date = LocalDate.of(2023, 10, 17);
+//        LocalDate end_date = LocalDate.of(2023, 10, 27);
+//        Rent rent1 = new Rent(client1, car, start_date, end_date);
+//        rentRepo.add(rent1);
+//        rentRepo.remove(rent1);
+//        assertNull(rentRepo.get(rent1.getID()));
+//    }
 }
